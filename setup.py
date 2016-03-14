@@ -25,7 +25,6 @@ setup(name='z3c.deadlockdebugger',
       install_requires=[
           'setuptools',
           'zope.publisher',
-          'threadframe',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

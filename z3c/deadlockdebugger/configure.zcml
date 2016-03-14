@@ -1,11 +1,21 @@
 <configure xmlns="http://namespaces.zope.org/zope"
-	   xmlns:browser="http://namespaces.zope.org/browser">
+	       xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:zcml="http://namespaces.zope.org/zcml">
 
   <browser:page
-     name="debug_threads"
-     for="*"
-     permission="zope.ManageApplication"
-     class=".threads.View"
-     />
-     
+      zcml:condition="installed zope.app.security"
+      name="debug_threads"
+      for="*"
+      permission="zope.ManageApplication"
+      class=".threads.View"
+      />
+
+  <browser:page
+      zcml:condition="installed Products.CMFCore"
+      name="debug_threads"
+      for="*"
+      permission="cmf.ManagePortal"
+      class=".threads.View"
+      />
+
 </configure>

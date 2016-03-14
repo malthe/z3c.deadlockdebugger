@@ -1,14 +1,12 @@
-try:
-    from zope.publisher.browser import BrowserView
-except ImportError:
-    # zope 2.9
-    from zope.app.publisher.browser import BrowserView
-
 import thread
-import threadframe
 import traceback
 import time
+
 from cStringIO import StringIO
+from sys import _current_frames as current_frames
+
+from zope.publisher.browser import BrowserView
+
 
 def dump_threads():
     """Dump running threads
@@ -16,7 +14,7 @@ def dump_threads():
     Returns a string with the tracebacks.
     """
 
-    frames = threadframe.dict()
+    frames = current_frames()
     this_thread_id = thread.get_ident()
     now = time.strftime("%Y-%m-%d %H:%M:%S")
     res = ["Threads traceback dump at %s\n" % now]
